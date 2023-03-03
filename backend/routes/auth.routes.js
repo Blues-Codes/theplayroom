@@ -74,11 +74,10 @@ router.post("/login", (req, res, next) => {
 });
 
 router.get("/verify", MidGuard, (req, res) => {
+  Parent.findOne({email: req.body.email})
+  // .populate('childName')
+  // .populate('gamesPlayed')
 
-  const foundParent =
-  Parent.findOne({id: req.body.parent.id})
-  .populate('childName')
-  .populate('gamesPlayed')
   .then((foundParent) => {
 
     const payload = { ...foundParent };
