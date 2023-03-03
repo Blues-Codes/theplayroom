@@ -4,20 +4,15 @@ const { Schema, model } = require("mongoose");
 
 const updateSchema = new Schema(
   {
-    // email: {
-    // type: String,
-    // required: true,
-    // unique: true
-    // },
-    // password: {
-    //   type: String,
-    //   required: true,
-    // },
-    // name: String,
-    // profile_image: String,
-    // city: String,
-    // age: Number,
-    // countries_visited: [{type: Schema.Types.ObjectId, ref: "Country"}],
+      name: String,
+      profile_image: String,
+      city: String,
+      age: Number,
+      childName: String,
+      childAge: Number,
+      game: String,
+      status: String,
+      date: String,
     // posts: [{type: Schema.Types.ObjectId, ref: "Post"}]
   },
   {
@@ -26,6 +21,6 @@ const updateSchema = new Schema(
   }
 );
 
-const Update = model("User", updateSchema);
+const Update = model("Update", updateSchema);
 
 module.exports = Update;

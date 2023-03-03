@@ -1,33 +1,34 @@
 var express = require('express');
 var router = express.Router();
 
-const Post = require('../models/Post.model');
-const User = require('../models/User.model')
+const Parent = require('../models/Parent.model');
+const Update = require('../models/Update.model');
+const Child = require('../models/Child.model');
 
-router.get('/', (req, res, next) => {
-  Post.find()
-    .populate('contributor')
-    .populate('country')
-    .sort({createdAt: -1})
-    .then((foundPosts) => {
-        res.json(foundPosts)
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-});
+// router.get('/', (req, res, next) => {
+//   Post.find()
+//     .populate('contributor')
+//     .populate('country')
+//     .sort({createdAt: -1})
+//     .then((foundPosts) => {
+//         res.json(foundPosts)
+//     })
+//     .catch((err) => {
+//         console.log(err)
+//     })
+// });
 
-router.get('/post-detail/:id', (req, res, next) => {
-  Post.findOne({_id: req.params.id})
-    .populate('contributor')
-    .populate('country')
-    .then((foundPost) => {
-        res.json(foundPost)
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-});
+// router.get('/post-detail/:id', (req, res, next) => {
+//   Post.findOne({_id: req.params.id})
+//     .populate('contributor')
+//     .populate('country')
+//     .then((foundPost) => {
+//         res.json(foundPost)
+//     })
+//     .catch((err) => {
+//         console.log(err)
+//     })
+// });
 
 
 router.post('/create-post/:userId', (req, res, next) => {

@@ -9,7 +9,7 @@ var cors = require('cors')
 var parentRouter = require('./routes/parent.routes');
 var authRouter = require('./routes/auth.routes')
 var childRouter = require('./routes/child.routes');
-var postsRouter = require('./routes/posts.routes')
+var updatesRouter = require('./routes/update.routes')
 
 var app = express();
 
@@ -26,10 +26,11 @@ app.use(
     })
   );
 
+
 app.use('/parent', parentRouter);
 app.use('/auth', authRouter)
 app.use('/child', childRouter);
-app.use('/posts', postsRouter)
+app.use('/update', updatesRouter)
 
 app.use(function (req, res, next) {
     next(createError(404));
