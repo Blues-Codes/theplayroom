@@ -2,29 +2,30 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { post } from "../services/authService"
 import { AuthContext } from "../context/auth.context"
-import { LoadingContext } from "../context/loading.context"
+import { LoadingContext } from "../context/loading.context";
+import BackgroundImage from "../components/BackgroundImg";
 
 const Signup = () => {
 
-    const { authenticateUser } = useContext(AuthContext)
-    const [ newUser, setNewUser ] = useState(
+    const { authenticateParent } = useContext(AuthContext)
+    const [ newParent, setNewParent ] = useState(
         {
             name: "",
             email: "",
-            password: ""
+            password: "",
         }
     )
     const navigate = useNavigate()
     const handleChange = (e) => {
-        setNewUser((recent)=>({...recent, [e.target.name]: e.target.value}))
-        console.log("Changin user", newUser)
+        setNewParent((recent)=>({...recent, [e.target.name]: e.target.value}))
+        console.log("Changing Parent", newParent)
     }
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        post('/auth/signup', newUser)
+        post('/auth/signup', newParent)
         .then((results) => {
-            console.log("Created User", results.data)
+            console.log("Created Parent", results.data)
             navigate(`/profile/${results.data._id}`)
             localStorage.setItem('authToken', results.data.token )
 
@@ -33,22 +34,45 @@ const Signup = () => {
             console.log(err)
         })
         .finally(() => {
-            authenticateUser()
+            authenticateParent()
         })
 } 
 return (
-    <div>
+    <BackgroundImage>
+    <div className="ParentSignup">
         <h1>Signup</h1>
         <form onSubmit={handleSubmit}>
             <label>Name</label>
-            <input type='text' name="name" value={newUser.name} onChange={handleChange}></input>
+            <input type='text' name="name" value={newParent.name} onChange={handleChange}></input>
             <label>Email</label>
-            <input type='email' name="email" value={newUser.email} onChange={handleChange}></input>
+            <input type='email' name="email" value={newParent.email} onChange={handleChange}></input>
             <label>Password</label>
-            <input type='password' name="password" value={newUser.password} onChange={handleChange}></input>
+            <input type='password' name="password" value={newParent.password} onChange={handleChange}></input>
+            <label>City</label>
+            <input type='text' name="city" value={newParent.city} onChange={handleChange}></input>
+            <label>Age</label>
+            <input type='text' name="name" value={newParent.age} onChange={handleChange}></input>
+            <label>Child Name</label>
+            <input type='text' name="name" value={newParent.childname} onChange={handleChange}></input>
+            <label>Child Age</label>
+            <input type='text' name="name" value={newParent.childage} onChange={handleChange}></input>
+            <label>Relation</label>
+            <select type="relation">
+                <option type="option">Select</option>
+                <option type="option1">Parent</option>
+                <option type="option2">Grandparent</option>
+                <option type="option3">Guardian</option>
+                <option type="option4">Aunt</option>
+                <option type="option5">Uncle</option>
+                <option type="option6">Sibling</option>
+            </select>
+            <input type='text' name="name" value={newParent.relation} onChange={handleChange}></input>
+
             <button type="submit">Sign Up</button>
         </form>
     </div>
+    </BackgroundImage>
 )
 }
+
 export default Signup

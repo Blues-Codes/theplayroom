@@ -2,13 +2,14 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
 import { post } from "../services/authService"
+import BackgroundImage from "../components/BackgroundImg";
 
 
 const Login = () => {
 
-    const { authenticateUser } = useContext(AuthContext)
+    const { authenticateParent } = useContext(AuthContext)
 
-    const [ thisUser, setthisUser ] = useState(
+    const [ thisParent, setthisParent ] = useState(
         {
             email: "",
             password: ""
@@ -18,16 +19,16 @@ const Login = () => {
     const navigate = useNavigate()
 
     const handleChange = (e) => {
-        setthisUser((recent)=>({...recent, [e.target.name]: e.target.value}))
-        console.log("Changing user", thisUser)
+        setthisParent((recent)=>({...recent, [e.target.name]: e.target.value}))
+        console.log("Changing Parent", thisParent)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        post('/auth/login', thisUser)
+        post('/auth/login', thisParent)
             .then((results) => {
-                console.log("Created User", results.data)
+                console.log("Created Parent", results.data)
                 navigate(`/profile/${results.data._id}`)
                 localStorage.setItem('authToken', results.data.token )
                 
@@ -36,25 +37,26 @@ const Login = () => {
                 console.log(err)
             })
             .finally(() => {
-                authenticateUser()
+                authenticateParent()
             })
     } 
 
     return (
+        <BackgroundImage>
         <div>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <label>Email</label>
-                <input type='email' name="email" value={thisUser.email} onChange={handleChange}></input>
+                <input type='email' name="email" value={thisParent.email} onChange={handleChange}></input>
 
                 <label>Password</label>
-                <input type='password' name="password" value={thisUser.password} onChange={handleChange}></input>
+                <input type='password' name="password" value={thisParent.password} onChange={handleChange}></input>
 
                 <button type="submit">Login</button>
 
             </form>
-
         </div>
+        </BackgroundImage>
     )
 }
 

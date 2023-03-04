@@ -3,10 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { LoadingContext } from "../context/loading.context";
 
 
-const ChildLogin = () => {
+
+
+const Profile = () => {
   return (
-    <div>ChildLogin</div>
+    <div>
+
+
+
+    </div>
   )
 }
 
-export default ChildLogin
+export default Profile

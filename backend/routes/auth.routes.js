@@ -40,6 +40,7 @@ router.post("/signup", async (req, res, next) => {
           });
       });
 
+      
 router.post("/login", (req, res, next) => {
   if (!req.body.email || !req.body.password) {
     return res.status(400).json({ message: "please fill out both fields" });
@@ -72,6 +73,8 @@ router.post("/login", (req, res, next) => {
       res.json(err.message);
     });
 });
+
+//VERIFY ALREADY CREATED USER
 
 router.get("/verify", MidGuard, (req, res) => {
   Parent.findOne({email: req.body.email})

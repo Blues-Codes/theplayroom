@@ -1,19 +1,15 @@
 import { Link } from "react-router-dom";
 
-
-
-
-
 const Navbar = () =>{
 
     return (
 
         <nav className="navigation">
-            <Link>Home</Link>
-            <Link>About</Link>
-            <Link>All Games</Link>
-            <Link>Sign Up</Link>
-            <Link>Login </Link>
+            <Link to={'/'}>Home</Link>
+            <Link to={'/about'}>About</Link>
+            <Link to={''}>All Games</Link>
+            <Link to={'/signup'}>Sign Up</Link>
+            <Link to={"/login"}>Login </Link>
 
         </nav>
     )

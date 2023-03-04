@@ -8,14 +8,13 @@ const LoadingContext = createContext();
 const LoadingProvider = ({ children }) => {
 
     const [isLoading, setIsLoading] = useState(false);
-    const [user, setUser] = useState(null);
-    const [message, setMessage] = useState('');
+    const [parent, setParent] = useState(null);
 
-    const [ countries, setCountries ] = useState([]);
-    const [ country, setCountry ] = useState(null);
+    const [ childName, setChildName ] = useState([]);
+    const [ gamesPlayed, setGamesPlayed ] = useState(null);
+    const [message, setMessage] = useState([])
 
-    const [ posts, setPosts ] = useState([])
-    const [ post, setPost ] = useState(null)
+    const [ updates, setUpdates ] = useState([])
 
     const setTimedMessage = (newMessage) => {
       setMessage(newMessage);
@@ -24,41 +23,27 @@ const LoadingProvider = ({ children }) => {
       }, 4000)
     }
     
-    const getCountries = () => {
-      axios.get('https://ih-countries-api.herokuapp.com/countries')
-        .then((response) => {
-          setCountries(response.data)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-
-    }
-
-    const getPosts = () =>{
-      get('/posts')
-      .then((results) =>{
-        setPost(results.data)
-      })
-      .catach((err) =>{
+    
+    const getUpdates = () =>{
+        get('/updates')
+        .then((results) =>{
+        setUpdates(results.data)
+    })
+    .catch((err) =>{
         console.log(err)
-      })
+    })
+}
+
+const getUpdate = () =>{
+    get(`/updates`)
+}
+
+return (
+    <LoadingContext.Provider value={{ childName, setChildName, updates, setUpdates, isLoading, parent, setParent, setIsLoading, gamesPlayed, message, setGamesPlayed, getUpdates, setTimedMessage, getUpdate}}>
+          {children}
+        </LoadingContext.Provider>
+      );
+      
     }
-
-    const getPost = () =>{
-      get (`/posts`)
-    }
-
-    const findCountry = (code) => {
-      let thisCountry = countries.find((country) => country.alpha2Code === code)
-      setCountry(thisCountry)
-    }
-
-      return (
-          <LoadingContext.Provider value={{ countries, country, posts, post, isLoading, message, user, setPost, setPosts, setCountries, setCountry, setIsLoading, setMessage, setUser, setTimedMessage, getCountries, findCountry,  }}>
-            {children}
-          </LoadingContext.Provider>
-        );
-  }  
-
+      
 export { LoadingContext, LoadingProvider }

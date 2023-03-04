@@ -7,11 +7,11 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
 
-    const { setIsLoading, setUser, setMessage } = useContext(LoadingContext)
+    const { setIsLoading, setParent, setMessage } = useContext(LoadingContext)
 
     const navigate = useNavigate();
 
-    const authenticateUser = () => {
+    const authenticateParent = () => {
         const token = localStorage.getItem("authToken");
         
         setIsLoading(true);
@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
             get("/auth/verify")
                 .then((results) => {
                     console.log("Are we logged in?", results.data);
-                    setUser(results.data)
+                    setParent(results.data)
                 })
                 .catch((err) => {
                     localStorage.clear();
@@ -34,25 +34,25 @@ const AuthProvider = ({ children }) => {
             } else {
                 localStorage.clear()
                 setIsLoading(false);
-                setUser(null);
+                setParent(null);
             }
     }
 
     const logout = () => {
         localStorage.clear();
         setMessage("You are logged out.");
-        setUser(null);
+        setParent(null);
         navigate("/");
       };
 
 
     useEffect(() => {
-        authenticateUser();
+        authenticateParent();
       }, []);
 
 
     return (
-        <AuthContext.Provider value={{ authenticateUser, logout }}>
+        <AuthContext.Provider value={{ authenticateParent, logout }}>
           {children}
         </AuthContext.Provider>
       );
