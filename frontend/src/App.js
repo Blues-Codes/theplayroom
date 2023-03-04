@@ -2,18 +2,14 @@ import { Routes, Route, Link, Navigate, Outlet } from 'react-router-dom'
 import './App.css';
 
 import Navbar from './components/Navbar';
-import Countries from './pages/Countries';
-import EditPost from './pages/EditPost';
-import EditProfile from './pages/EditProfile';
+import About from './pages/About';
+import ChildLogin from './pages/ChildLogin';
+import ComingSoon from './pages/ComingSoon';
 import Home from './pages/Home';
-import Login from './pages/Login';
-import NewPost from './pages/NewPost';
+import ParentLogin from './pages/ParentLogin'
 import Profile from './pages/Profile';
-import SignUp from './pages/Signup';
-import OtherProfile from './pages/OtherProfile';
-import Posts from './pages/Posts';
-import CountryDetails from './pages/CountryDetails';
-import PostDetails from './pages/PostDetails';
+import ParentSignUp from './pages/ParentSignup';
+import Updates from './pages/Updates';
 
 
 const App = () => {
@@ -38,26 +34,24 @@ const App = () => {
 
 
           <Route path='/' element={<Home />} />
-          <Route path='/countries'element={<Countries />} />
-          <Route path='/posts'element={<Posts />} />
-          <Route path='/posts/:id'element={<CountryDetails />} />
-          <Route path='/posts-details/:id'element={<PostDetails />} />
-
+          <Route path='/about'element={<About/>} />
+          <Route path='/signup'element={<ParentSignUp />} />
+          <Route path='/Parentlogin'element={<ParentLogin />} />
 
           <Route element={<LoggedIn />}>
 
-            <Route path='/other-profile/:id' element={<OtherProfile />} />
-            <Route path='/post/:id'element={<EditPost />} />
+            <Route path='/updates/:id'element={<Updates />} />
             <Route path='/edit-profile/:id'element={<EditProfile />} />
-            <Route path='/new-post'element={<NewPost />} />
             <Route path='profile/:id'element={<Profile />} />
+            <Route path='/Childlogin'element={<ChildLogin />} />
+            <Route path='/Comingsoon' element={<ComingSoon />} />
 
           </Route>
 
           <Route element={<NotLoggedIn />}>
 
-            <Route path='/signup'element={<SignUp />} />
-            <Route path='/login'element={<Login />} />
+            <Route path='/Signup'element={<ParentSignUp />} />
+            <Route path='/Parentlogin'element={<ParentLogin />} />
 
           </Route>
 

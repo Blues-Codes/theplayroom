@@ -13,7 +13,7 @@ const updateSchema = new Schema(
       game: String,
       status: String,
       date: String,
-    // posts: [{type: Schema.Types.ObjectId, ref: "Post"}]
+    updates: [{type: Schema.Types.ObjectId, ref: "Child"}]
   },
   {
     timeseries: true,
