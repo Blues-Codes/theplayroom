@@ -9,10 +9,10 @@ const Child = require('../models/Child.model')
 const Updates = require('../models/Update.model')
 
 /* GET users profile. */
-router.get('/profile/:userId', (req, res, next) => {
-    User.findById (req.params.userId)
-    .then((foundUser) => {
-      res.json(foundUser);
+router.get('/profile/', (req, res, next) => {
+    Parent.findById (req.params.parentId)
+    .then((foundParent) => {
+      res.json(foundParent);
     })
     .catch((err) => {
       console.log(err)
@@ -21,9 +21,9 @@ router.get('/profile/:userId', (req, res, next) => {
 });
 
 //EDITING PROFILE ADDING CHILD
-router.post('/profile-edit/:parentId', MidGuard, (req, res, next) => {
-  console.log(req.user)
-  Parent.findByIdAndUpdate(req.params.userId, {
+router.post('/profile-edit', MidGuard, (req, res, next) => {
+  console.log(req.parent)
+  Parent.findByIdAndUpdate(req.params.parentId, {
     name:req.body.name,
     profile_image: req.body.profile_image,
     city: req.body.city,
@@ -43,11 +43,11 @@ router.post('/profile-edit/:parentId', MidGuard, (req, res, next) => {
         childAge: req.body.childAge,
         realtion: req.body.relation
     }
-      Child.create(newCountry)
+      Child.create(newChild)
         .then((createdChild) => {
-            return User.findByIdAndUpdate(
+            return Parent.findByIdAndUpdate(
                 {
-                    _id: req.params.userId
+                    _id: req.params.parentId
                 }, 
                 {
                 $push: {child: createdChild._id}

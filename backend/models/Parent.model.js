@@ -26,6 +26,6 @@ const parentSchema = new Schema(
   }
 );
 
-const Parent = model("User", parentSchema);
+const Parent = model("Parent", parentSchema);
 
 module.exports = Parent;
