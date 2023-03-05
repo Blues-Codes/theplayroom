@@ -5,7 +5,11 @@ import { LoadingContext } from "../context/loading.context";
 
 const Updates = () => {
   return (
-    <div>Updates</div>
+    <div>
+        
+        Updates
+        
+        </div>
   )
 }
 

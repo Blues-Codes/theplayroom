@@ -5,7 +5,11 @@ import { LoadingContext } from "../context/loading.context";
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+        
+        Home
+        
+        </div>
   )
 }
 

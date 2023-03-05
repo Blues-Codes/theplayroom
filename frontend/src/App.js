@@ -10,6 +10,7 @@ import ParentLogin from './pages/ParentLogin'
 // import Profile from './pages/Profile';
 import ParentSignUp from './pages/ParentSignup';
 import Updates from './pages/Updates';
+import Games from './pages/Games';
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
             <Route path='/profile/:id'element={<Profile />} /> */}
             <Route path='/Childlogin'element={<ChildLogin />} />
             <Route path='/Comingsoon' element={<ComingSoon />} />
+            <Route path='/games' element={<Games />} />
 
           </Route>
 
