@@ -4,13 +4,9 @@ const { Schema, model } = require("mongoose");
 
 const updateSchema = new Schema(
   {
-      name: String,
-      profile_image: String,
-      city: String,
-      age: Number,
       childName: String,
       childAge: Number,
-      game: String,
+      gamesPlayed: String,
       status: String,
       date: String,
     updates: [{type: Schema.Types.ObjectId, ref: "Child"}]

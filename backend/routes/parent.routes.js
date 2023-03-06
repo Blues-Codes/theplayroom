@@ -9,7 +9,7 @@ const Child = require('../models/Child.model')
 const Updates = require('../models/Update.model')
 
 /* GET users profile. */
-router.get('/profile/', (req, res, next) => {
+router.get('/profile/', MidGuard, (req, res, next) => {
     Parent.findById (req.params.parentId)
     .then((foundParent) => {
       res.json(foundParent);

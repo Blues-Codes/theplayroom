@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
         
-        Home
+        Welcome to The Playroom! 
         
         </div>
   )

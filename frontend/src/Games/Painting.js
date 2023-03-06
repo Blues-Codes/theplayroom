@@ -1,18 +1,41 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
 import Parent from '../../../backend/models/Parent.model';
 import Child from '../../../backend/models/Child.model';
+import { useState } from 'react';
+import './App.css';
 
+function PaintingGame() {
+  const [color, setColor] = useState('black');
 
-const Painting = () => {
+  function handleColorChange(e) {
+    setColor(e.target.value);
+  }
+
   return (
-    <div>Painting
-
-        <iframe src="https://www.abcya.com/games/abcya_paint" width="600" height="400"></iframe>
-
-
+    <div className="Painting">
+      <h1>Painting Game</h1>
+      <div className="color-picker">
+        <label htmlFor="color">Select a color:</label>
+        <input type="color" id="color" value={color} onChange={handleColorChange} />
+      </div>
+      <div className="canvas">
+        {[...Array(4000)].map((_, i) => (
+          <div
+            key={i}
+            className="pixel"
+            onMouseDown={(e) => {
+              e.target.style.backgroundColor = color;
+            }}
+            onMouseEnter={(e) => {
+              if (e.buttons === 1) {
+                e.target.style.backgroundColor = color;
+              }
+            }}
+          />
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
-export default Painting
+export default PaintingGame;

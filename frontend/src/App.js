@@ -7,7 +7,7 @@ import ChildLogin from './pages/ChildLogin';
 import ComingSoon from './pages/ComingSoon';
 import Home from './pages/Home';
 import ParentLogin from './pages/ParentLogin'
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 import ParentSignUp from './pages/ParentSignup';
 import Updates from './pages/Updates';
 import Games from './pages/Games';
@@ -43,8 +43,8 @@ const App = () => {
           <Route element={<LoggedIn />}>
 
             <Route path='/updates/:id'element={<Updates />} />
-            {/* <Route path='/edit-profile/:id'element={<EditProfile />} />
-            <Route path='/profile/:id'element={<Profile />} /> */}
+            {/* <Route path='/edit-profile/:id'element={<EditProfile />} /> */}
+            <Route path='/profile/:id'element={<Profile />} /> 
             <Route path='/Childlogin'element={<ChildLogin />} />
             <Route path='/Comingsoon' element={<ComingSoon />} />
             <Route path='/games' element={<Games />} />
