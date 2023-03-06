@@ -4,14 +4,18 @@ import { LoadingContext } from "../context/loading.context";
 import { Link } from "react-router-dom";
 
 
-
-
 const Profile = () => {
+  const navigate = useNavigate()
   return (
     <div>
-       <button><Link to={"/updates"}>See what your child has played!</Link></button>
-       <button><Link to={"/about"}>Why did we create this site?</Link></button>
-        
+       <Link to={"/updates"}>
+       <button>Child Updates</button>
+       </Link>
+       <Link to={"/about"}>
+        <button>About</button>
+       </Link>
+      
+      <button onClick={(() => {localStorage.removeItem("authToken"); navigate("/login")})}> Log Out</button>
 
 
     </div>

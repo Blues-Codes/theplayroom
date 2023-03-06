@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoadingContext } from "../context/loading.context";
 import { Link } from "react-router-dom";
+import Games from "./Games";
 
 
 function Keyboard({ onLetterClick }) {
@@ -40,8 +41,8 @@ return (
         <Keyboard onLetterClick={handleLetterClick} />
     </div>
     <div className="welcomeMsg">
-        <p> `Hi ${childName}! Let's play a game!`</p>
-        <Link to="/allGames" path={<Games />}/>
+        <p> `Hi ${ChildLogin}! Let's play a game!`</p>
+        <Link to="/games" path={<Games />}/>
         </div></>
 );
 }

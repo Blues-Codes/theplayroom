@@ -38,7 +38,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/about'element={<About/>} />
           <Route path='/signup'element={<ParentSignUp />} />
-          <Route path='/Parentlogin'element={<ParentLogin />} />
+          <Route path='/login'element={<ParentLogin />} />
 
           <Route element={<LoggedIn />}>
 
@@ -48,13 +48,14 @@ const App = () => {
             <Route path='/Childlogin'element={<ChildLogin />} />
             <Route path='/Comingsoon' element={<ComingSoon />} />
             <Route path='/games' element={<Games />} />
+            
 
           </Route>
 
           <Route element={<NotLoggedIn />}>
 
             <Route path='/Signup'element={<ParentSignUp />} />
-            <Route path='/Parentlogin'element={<ParentLogin />} />
+            <Route path='/login'element={<ParentLogin />} />
 
           </Route>
 

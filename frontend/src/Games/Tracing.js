@@ -19,7 +19,18 @@ const PATHS = {
     },
   };
 
+  import React, { useState } from 'react';
 
+  function TouchExample() {
+    const [touchPosition, setTouchPosition] = useState({ x: null, y: null });
+  
+    function handleTouchStart(event) {
+      setTouchPosition({
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY,
+      });
+    }
+  }
 
 const Tracing = () => {
     const [path, setPath] = useState('');

@@ -2,7 +2,6 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
 import { post } from "../services/authService"
-import BackgroundImage from "../components/BackgroundImg";
 
 
 const Login = () => {
@@ -52,6 +51,12 @@ const Login = () => {
                 <input type='password' name="password" value={thisParent.password} onChange={handleChange}></input>
 
                 <button type="submit">Login</button>
+                {/* {
+
+                isLoggedin ? true : false 
+
+                }
+ */}
 
             </form>
         </div>
