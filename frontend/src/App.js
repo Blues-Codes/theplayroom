@@ -11,6 +11,7 @@ import ParentLogin from './pages/ParentLogin'
 import ParentSignUp from './pages/ParentSignup';
 import Updates from './pages/Updates';
 import Games from './pages/Games';
+import BackgroundImg from './components/BackgroundImg';
 
 
 const App = () => {
@@ -27,10 +28,10 @@ const App = () => {
 
 
   return (
-    <div >
+    <div className='playRoomImg' >
 
       <Navbar />
-
+      
         <Routes>
 
 
@@ -59,7 +60,8 @@ const App = () => {
 
 
         </Routes>
-
+        
+        
     </div>
   );
 }

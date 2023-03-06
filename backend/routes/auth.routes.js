@@ -40,7 +40,7 @@ router.post("/signup", async (req, res, next) => {
           });
       });
 
-      
+
 router.post("/login", (req, res, next) => {
   if (!req.body.email || !req.body.password) {
     return res.status(400).json({ message: "please fill out both fields" });
@@ -58,7 +58,7 @@ router.post("/login", (req, res, next) => {
       );
 
       if (doesMatch) {
-        const payload = { _id: foundParent._id, email: foundParent.email, name: foundParent.name, profile_image: foundParent.profile_image, city: foundParent.city, age: foundParent.age, countries_visited: foundParent.countries_visited, posts: foundParent.posts };
+        const payload = { _id: foundParent._id, email: foundParent.email, name: foundParent.name, profile_image: foundParent.profile_image, city: foundParent.city, age: foundParent.age, childName: foundParent.childName, childAge: foundParent.childAge };
 
         const token = jwt.sign(payload, process.env.SECRET, {
           algorithm: "HS256",

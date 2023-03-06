@@ -42,7 +42,6 @@ const Login = () => {
     } 
 
     return (
-        <BackgroundImage>
         <div>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
@@ -56,7 +55,6 @@ const Login = () => {
 
             </form>
         </div>
-        </BackgroundImage>
     )
 }
 
