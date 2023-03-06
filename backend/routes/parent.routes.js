@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
-
 const MidGuard = require('../middleware/midGuard')
 const Parent = require('../models/Parent.model')
 const Child = require('../models/Child.model')
@@ -25,9 +23,7 @@ router.post('/profile-edit', MidGuard, (req, res, next) => {
   console.log(req.parent)
   Parent.findByIdAndUpdate(req.params.parentId, {
     name:req.body.name,
-    profile_image: req.body.profile_image,
     city: req.body.city,
-    age: req.body.age,
     childName: req.body.childName,
     childAge: req.body.childAge, 
     relation: req.body.relation
@@ -41,7 +37,7 @@ router.post('/profile-edit', MidGuard, (req, res, next) => {
         let newChild = {
         childName: req.body.childName,
         childAge: req.body.childAge,
-        realtion: req.body.relation
+        relation: req.body.relation
     }
       Child.create(newChild)
         .then((createdChild) => {

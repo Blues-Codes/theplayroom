@@ -1,86 +1,134 @@
-import { createPath } from './pathUtils';
-import { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
-const PATHS = {
-    letters: {
-      A: 'M 25,75 Q 25,25 50,25 Q 75,25 75,50 Q 75,75 50,75 Q 25,75 25,75 Z',
-      B: 'M 25,25 Q 25,5 50,5 Q 75,5 75,25 Q 75,50 50,50 Q 25,50 25,75 Q 25,95 50,95 Q 75,95 75,75 Q 75,50 50,50',
-      // more letters here...
-    },
-    numbers: {
-      1: 'M 50,5 L 50,95',
-      2: 'M 25,25 Q 25,5 50,5 Q 75,5 75,25 Q 75,50 50,50 Q 25,50 25,75 Q 25,95 50,95 Q 75,95 75,75',
-      // more numbers here...
-    },
-    shapes: {
-      circle: 'M 50,5 A 45,45 0 1 1 50,95 A 45,45 0 1 1 50,5',
-      square: 'M 25,25 L 25,75 L 75,75 L 75,25 Z',
-      // more shapes here...
-    },
+const tracings = [  {    type: 'letter',    value: 'A',    image: 'apple.png',    path: 'M 50 100 Q 100 50 150 100 Q 100 150 50 100',  },  {    type: 'number',    value: '1',    image: 'one.png',    path: 'M 50 100 L 150 100',  },  {    type: 'shape',    value: 'square',    image: 'square.png',    path: 'M 50 50 L 150 50 L 150 150 L 50 150 Z',  },  // add tracing objects here
+];
+
+const TraceGame = () => {
+  const canvasRef = useRef(null);
+  const [tracing, setTracing] = useState(null);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    ctx.lineWidth = 5;
+    ctx.lineCap = 'round';
+  }, []);
+
+  const handleStart = (event) => {
+    event.preventDefault();
+    if (event.touches) {
+      event = event.touches[0];
+    }
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    const { left, top } = canvas.getBoundingClientRect();
+    ctx.beginPath();
+    ctx.moveTo(event.clientX - left, event.clientY - top);
+    setIsDrawing(true);
   };
 
-  import React, { useState } from 'react';
-
-  function TouchExample() {
-    const [touchPosition, setTouchPosition] = useState({ x: null, y: null });
-  
-    function handleTouchStart(event) {
-      setTouchPosition({
-        x: event.touches[0].clientX,
-        y: event.touches[0].clientY,
-      });
+  const handleMove = (event) => {
+    event.preventDefault();
+    if (!isDrawing) {
+      return;
     }
-  }
-
-const Tracing = () => {
-    const [path, setPath] = useState('');
-    const [isTracing, setIsTracing] = useState(false);
-  
-    function handleStart(event) {
-      event.preventDefault();
-      setIsTracing(true);
+    if (event.touches) {
+      event = event.touches[0];
     }
-  
-    function handleMove(event) {
-      event.preventDefault();
-      if (isTracing) {
-        const { clientX, clientY } = event.touches ? event.touches[0] : event;
-        const { x, y } = event.target.getBoundingClientRect();
-        const offsetX = clientX - x;
-        const offsetY = clientY - y;
-        const newPath = createPath(offsetX, offsetY, path);
-        setPath(newPath);
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    const { left, top } = canvas.getBoundingClientRect();
+    ctx.lineTo(event.clientX - left, event.clientY - top);
+    ctx.stroke();
+  };
+
+  const handleEnd = (event) => {
+    event.preventDefault();
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    setIsDrawing(false);
+    const { left, top } = canvas.getBoundingClientRect();
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const pixelData = imageData.data;
+    let totalPixels = 0;
+    let filledPixels = 0;
+    for (let i = 0; i < pixelData.length; i += 4) {
+      const alpha = pixelData[i + 3];
+      if (alpha > 0) {
+        filledPixels++;
       }
+      totalPixels++;
     }
-  
-    function handleEnd(event) {
-      event.preventDefault();
-      setIsTracing(false);
+    const percentageFilled = filledPixels / totalPixels;
+    if (percentageFilled >= 0.8) {
+      setMessage('Great job!');
+    } else {
+      setMessage('Try again!');
     }
-  
-    function handleSelectPath(pathType, pathName) {
-      setPath(PATHS[pathType][pathName]);
-    }
+  };
+
+  const handleSelect = (event) => {
+    const selected = event.target.value;
+    const randomIndex = Math.floor(Math.random() * tracings.length);
+    const randomTracing = tracings[randomIndex];
+    if (selected === 'any') {
+      setTracing(randomTracing);
+    } else {
+      const filteredTracings = tracings.filter(
+        (tracing) => tracing.type === selected
+      );
+      if (filteredTracings.length === 0) {
+        setTracing(randomTracing);
+      } else {
+        const randomFilteredIndex = Math.floor(
+          Math.random * filteredTracings.length
+          );
+          const randomFilteredTracing = filteredTracings[randomFilteredIndex];
+          setTracing(randomFilteredTracing);
+        }
+      }
+      setMessage('');
+      const canvas = canvasRef.current;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.stroke();
+    };
   
     return (
       <div>
-        <h1>Tracing Game</h1>
+        <h1>Trace Game</h1>
         <div>
-          <button onClick={() => handleSelectPath('letters', 'A')}>A</button>
-          <button onClick={() => handleSelectPath('letters', 'B')}>B</button>
-          {/* more buttons here */}
+          <label htmlFor="type-select">Choose a tracing type:</label>
+          <select id="type-select" onChange={handleSelect}>
+            <option value="any">Any</option>
+            <option value="letter">Letters</option>
+            <option value="number">Numbers</option>
+            <option value="shape">Shapes</option>
+          </select>
         </div>
-        <div>
-          <button onClick={() => handleSelectPath('numbers', '1')}>1</button>
-          <button onClick={() => handleSelectPath('numbers', '2')}>2</button>
-          {/*  more buttons here */}
-        </div>
-        <div>
-          <button onClick={() => handleSelectPath('shapes', 'circle')}>Circle</button>
-          <button onClick={() => handleSelectPath('shapes', 'square')}>Square</button>
-          {/* more buttons here */}
-        </div>
-        </div>
-)}
-
-export default Tracing
+        {tracing && (
+          <div>
+            <h2>Trace the {tracing.type} {tracing.value}</h2>
+            <img src={tracing.image} alt={`${tracing.value}`} />
+          </div>
+        )}
+        <canvas
+          ref={canvasRef}
+          width={200}
+          height={200}
+          onTouchStart={handleStart}
+          onTouchMove={handleMove}
+          onTouchEnd={handleEnd}
+          onMouseDown={handleStart}
+          onMouseMove={handleMove}
+          onMouseUp={handleEnd}
+        />
+        <p>{message}</p>
+      </div>
+    );
+  };
+  
+  export default TraceGame;

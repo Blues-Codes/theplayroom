@@ -51,12 +51,6 @@ const Login = () => {
                 <input type='password' name="password" value={thisParent.password} onChange={handleChange}></input>
 
                 <button type="submit">Login</button>
-                {/* {
-
-                isLoggedin ? true : false 
-
-                }
- */}
 
             </form>
         </div>

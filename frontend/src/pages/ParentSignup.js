@@ -55,8 +55,6 @@ return (
             <input type='password' name="password" value={newParent.password} onChange={handleChange}></input>
             <label>City</label>
             <input type='text' name="city" value={newParent.city} onChange={handleChange}></input>
-            <label>Age</label>
-            <input type='text' name="age" value={newParent.age} onChange={handleChange}></input>
             <label>Child Name</label>
             <input type='text' name="childName" value={newParent.childName} onChange={handleChange}></input>
             <label>Child Age</label>

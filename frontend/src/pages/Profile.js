@@ -14,7 +14,9 @@ const Profile = () => {
        <Link to={"/about"}>
         <button>About</button>
        </Link>
-      
+      <Link to={"/EducationResources"}>
+        <button>Resources</button>
+      </Link>
       <button onClick={(() => {localStorage.removeItem("authToken"); navigate("/login")})}> Log Out</button>
 
 

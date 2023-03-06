@@ -24,7 +24,12 @@ router.post("/signup", async (req, res, next) => {
         await Parent.create({
           password: hashedPass,
           email: req.body.email,
-          name: req.body.name
+          name: req.body.name,
+          city: req.body.city,
+          childName: req.body.childName,
+          childAge: req.body.childAge,
+          relation: req.body.relation
+
         })
           .then((createdParent) => {
             const payload = { ...createdParent };
@@ -58,7 +63,7 @@ router.post("/login", (req, res, next) => {
       );
 
       if (doesMatch) {
-        const payload = { _id: foundParent._id, email: foundParent.email, name: foundParent.name, profile_image: foundParent.profile_image, city: foundParent.city, age: foundParent.age, childName: foundParent.childName, childAge: foundParent.childAge };
+        const payload = { _id: foundParent._id, email: foundParent.email, name: foundParent.name, city: foundParent.city, childName: foundParent.childName, childAge: foundParent.childAge, relation: foundParent.relation };
 
         const token = jwt.sign(payload, process.env.SECRET, {
           algorithm: "HS256",

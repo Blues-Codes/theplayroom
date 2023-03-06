@@ -11,7 +11,8 @@ import Profile from './pages/Profile';
 import ParentSignUp from './pages/ParentSignup';
 import Updates from './pages/Updates';
 import Games from './pages/Games';
-import BackgroundImg from './components/BackgroundImg';
+import EducationResources from './pages/EducationResources';
+import EditProfile from './pages/EditProfile';
 
 
 const App = () => {
@@ -43,12 +44,13 @@ const App = () => {
           <Route element={<LoggedIn />}>
 
             <Route path='/updates/:id'element={<Updates />} />
-            {/* <Route path='/edit-profile/:id'element={<EditProfile />} /> */}
-            <Route path='/profile/:id'element={<Profile />} /> 
+            <Route path='/edit-profile'element={<EditProfile />} />
+            <Route path='/profile'element={<Profile />} /> 
             <Route path='/Childlogin'element={<ChildLogin />} />
             <Route path='/Comingsoon' element={<ComingSoon />} />
             <Route path='/games' element={<Games />} />
-            
+            <Route path='./educationResources' element={<EducationResources />} />
+
 
           </Route>
 
