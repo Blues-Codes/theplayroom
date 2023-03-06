@@ -12,14 +12,14 @@ const AuthProvider = ({ children }) => {
 
   const authenticateParent = () => {
     const token = localStorage.getItem("authToken");
-    console.log(token);
+    console.log("THIS IS LINE 15",token);
     setIsLoading(true);
 
     if (!token) {
       localStorage.clear();
       setIsLoading(false);
       setParent(null);
-    }
+    } else {
     get("/auth/verify")
       .then((results) => {
         console.log("Are we logged in?", results.data);
@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
       .finally(() => {
         setIsLoading(false);
       });
+    }
   };
 
   const logout = () => {

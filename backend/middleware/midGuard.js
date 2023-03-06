@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const midGuard = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
-
+  console.log("this is the token", token)
   if (!token || token === "null") {
     return res.status(400).json({ message: "Token not found" });
   }

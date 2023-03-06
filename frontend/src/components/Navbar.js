@@ -5,7 +5,7 @@ import { LoadingContext } from "../context/loading.context";
 const Navbar = () =>{
     const {parent } = useContext(LoadingContext)
 
-    console.log(parent)
+    console.log("this is the parent", parent)
     return (
            
         <>

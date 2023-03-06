@@ -64,7 +64,8 @@ router.post("/login", (req, res, next) => {
           algorithm: "HS256",
           expiresIn: "24hr",
         });
-        res.json({ _id: foundParent._id, token: token, message: `Welcome ${foundParent.name}` });
+        console.log("doesmatch", payload)
+        return res.json({ _id: foundParent._id, token: token, message: `Welcome ${foundParent.name}` });
       } else {
         return res.status(402).json({ message: "Email or Password is incorrect" });
       }
@@ -77,15 +78,15 @@ router.post("/login", (req, res, next) => {
 //VERIFY ALREADY CREATED USER
 
 router.get("/verify", MidGuard, (req, res) => {
-  Parent.findOne({email: req.body.email})
+  Parent.findOne({_id: req.user._id})
   // .populate('childName')
   // .populate('gamesPlayed')
 
   .then((foundParent) => {
 
     const payload = { ...foundParent };
+    console.log("this is the payload", payload, foundParent)
     delete payload._doc.password;
-
     res.status(200).json(payload._doc);
     
   })
