@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
-import Parent from "../../../backend/models/Parent.model";
-import Child from "../../../backend/models/Child.model";
 import { useState } from "react";
-import "./App.css";
 
 function PaintingGame() {
   const [color, setColor] = useState("black");

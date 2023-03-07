@@ -13,6 +13,11 @@ import Updates from './pages/Updates';
 import Games from './pages/Games';
 import EducationResources from './pages/EducationResources';
 import EditProfile from './pages/EditProfile';
+import Storytime from './pages/Storytime';
+import PaintingGame from './Games/Painting';
+import Shapes from './Games/Shapes';
+import TraceGame from './Games/Tracing';
+import Weather from './Games/Weather';
 
 
 const App = () => {
@@ -50,6 +55,11 @@ const App = () => {
             <Route path='/Comingsoon' element={<ComingSoon />} />
             <Route path='/games' element={<Games />} />
             <Route path='./educationResources' element={<EducationResources />} />
+            <Route path='./StoryTime' element={<Storytime />}/>
+            <Route path='./tracing' element={<TraceGame />} />
+            <Route path='./shapes' element={<Shapes />} />
+            <Route path='./painting' element={<PaintingGame />} />
+            <Route path='./weather' element={<Weather />} />
 
 
           </Route>

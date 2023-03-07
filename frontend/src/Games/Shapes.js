@@ -14,7 +14,7 @@ const holes = [
   // add more hole objects here
 ];
 
-const ShapeBox = () => {
+const Shapes = () => {
   const [draggingShape, setDraggingShape] = useState(null);
   const [message, setMessage] = useState('');
 

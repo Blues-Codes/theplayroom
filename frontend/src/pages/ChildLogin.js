@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Games from "./Games";
 import { AuthContext } from "../context/auth.context";
 import { useParams } from "react-router-dom";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
 function Keyboard({ onLetterClick }) {
   const rows = [
@@ -42,14 +42,14 @@ const ChildLogin = () => {
     setText(text + letter);
   }
 
-  const { user } = AuthContext();
-  const { childId } = useParams();
+  // const { user } = AuthContext();
+  // const { childId } = useParams();
 
-  const sendUpdate = () => {
-    const socket = io('http://localhost:3000');
-    socket.emit('update', `Child ${childId} did something`);
-    socket.disconnect();
-  };
+  // const sendUpdate = () => {
+  //   const socket = io('http://localhost:3000');
+  //   socket.emit('update', `Child ${childId} did something`);
+  //   socket.disconnect();
+  // };
 
   return (
     <>
@@ -61,10 +61,10 @@ const ChildLogin = () => {
         <p> `Hi ${ChildLogin}! Let's play a game!`</p>
         <Link to="/games" path={<Games />} />
       </div>
-    <div>
-      <h1>Child Dashboard</h1>
+    {/* <div> */}
+      {/* <h1>Child Dashboard</h1>
       <button onClick={sendUpdate}>Do Something</button>
-    </div>
+    </div> */}
     </>
   );
 }

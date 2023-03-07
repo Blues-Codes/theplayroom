@@ -6,7 +6,7 @@ const updateSchema = new Schema(
   {
       childName: String,
       childAge: Number,
-      gamesPlayed: String,
+      gamesPlayed: [String],
       status: String,
       date: String,
     updates: [{type: Schema.Types.ObjectId, ref: "Child"}]
