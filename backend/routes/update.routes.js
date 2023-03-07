@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 const Parent = require('../models/Parent.model');
-const Update = require('../models/Update.model');
+const Updates = require('../models/Update.model');
 const Child = require('../models/Child.model');
 
 router.get('/childupdates', (req, res, next) => {
-  Update.find()
+  Updates.find()
     .populate('childName')
     .populate('gamesPlayed')
     .sort({date: -1})

@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors')
+var http = require('http');
 
 var parentRouter = require('./routes/parent.routes');
 var authRouter = require('./routes/auth.routes')
@@ -12,6 +13,8 @@ var childRouter = require('./routes/child.routes');
 var updatesRouter = require('./routes/update.routes')
 
 var app = express();
+var server = http.createServer(app);
+var io = require('socket.io')(server);
 
 app.set('trust proxy', 1);
 app.enable('trust proxy');
@@ -26,11 +29,16 @@ app.use(
     })
   );
 
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+io.emit('update', { message: 'Hello, world!' });
+
 
 app.use('/parent', parentRouter);
 app.use('/auth', authRouter)
 app.use('/child', childRouter);
-app.use('/update', updatesRouter)
+app.use('/updates', updatesRouter)
 
 app.use(function (req, res, next) {
     next(createError(404));
