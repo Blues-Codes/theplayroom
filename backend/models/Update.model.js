@@ -1,15 +1,13 @@
-const { Schema, model } = require("mongoose");
-
-// parent getting updates
-
 const updateSchema = new Schema(
   {
-      childName: String,
-      childAge: Number,
-      gamesPlayed: [String],
-      status: String,
-      date: String,
-    updates: [{type: Schema.Types.ObjectId, ref: "Child"}]
+    child: {type: Schema.Types.ObjectId, ref: "Child"},
+    gamesPlayed: [
+        {
+            game: {type: Schema.Types.ObjectId}, 
+            time: Date
+        }
+    ],
+        
   },
   {
     timeseries: true,
@@ -20,3 +18,26 @@ const updateSchema = new Schema(
 const Update = model("Update", updateSchema);
 
 module.exports = Update;
+
+
+// const { Schema, model } = require("mongoose");
+
+// // parent getting updates
+
+// const updateSchema = new Schema(
+//   {
+//       childName: String,
+//       childAge: Number,
+//       gamesPlayed: [String],
+//       date: String,
+//     updates: [{type: Schema.Types.ObjectId, ref: "Child"}]
+//   },
+//   {
+//     timeseries: true,
+//     timestamps: true,
+//   }
+// );
+
+// const Update = model("Update", updateSchema);
+
+// module.exports = Update;

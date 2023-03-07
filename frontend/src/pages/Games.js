@@ -51,10 +51,12 @@ const Games = () => {
   return (
     <div>
         <h1>Games</h1>
-        {/* <iframe
+        <div className="frame" onClick={()=> console.log("clicking")}>
+        <iframe 
         src="https://www.thelearningapps.com/alphabet-tracing-game-for-kids/"
         // title="title"
-      ></iframe> */}
+      ></iframe>
+      </div>
         {
             gamesList.map((game)=> {
                 return (

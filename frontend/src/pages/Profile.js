@@ -30,8 +30,6 @@ const navigate = useNavigate()
       </Link>
       <button onClick={(() => {localStorage.removeItem("authToken"); navigate("/login")})}> Log Out</button>
 
-      <h1>Parent Dashboard</h1>
-      <Route path="/child/:childId/updates" component={Updates} />
 
     </div>
   )

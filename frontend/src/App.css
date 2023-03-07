@@ -79,6 +79,12 @@ margin: 5px;
 /* WEATHER GAME */
 iframe {
   width: 100%;
-  height: 0;
+  height: 50vh;
   padding-bottom: 56.25%;
+}
+
+.frame iframe{
+
+  pointer-events: none;
+
 }

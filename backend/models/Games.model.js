@@ -1,12 +1,12 @@
 const { Schema, model } = require("mongoose");
 
-const gameSchema = new Schema(
+const GameSchema = new Schema(
   {
     title: String,
     description: String,
     original_location: String,
     cover_image: String,
-    Play_link: string
+    Play_Link: String
 
   },
   {
@@ -15,6 +15,6 @@ const gameSchema = new Schema(
   }
 );
 
-const Games = model("Games", childSchema);
+// const Games = model("Games", childSchema);
 
-module.exports = Games;
+module.exports = GameSchema;

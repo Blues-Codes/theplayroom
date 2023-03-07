@@ -13,8 +13,6 @@ var childRouter = require('./routes/child.routes');
 var updatesRouter = require('./routes/update.routes')
 
 var app = express();
-var server = http.createServer(app);
-var io = require('socket.io')(server);
 
 app.set('trust proxy', 1);
 app.enable('trust proxy');
@@ -28,12 +26,6 @@ app.use(
       origin: [process.env.FRONTEND_URI]  // <== URL of our future React app
     })
   );
-
-io.on('connection', (socket) => {
-  console.log('a user connected');
-});
-io.emit('update', { message: 'Hello, world!' });
-
 
 app.use('/parent', parentRouter);
 app.use('/auth', authRouter)

@@ -4,7 +4,7 @@ const childSchema = new Schema(
   {
     name: String,
     age: Number,
-    gamesPlayed: [ String ],
+    gamesPlayed: {type: Schema.Types.ObjectId, ref: "Update"},
   },
   {
     timeseries: true,
