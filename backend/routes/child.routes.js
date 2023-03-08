@@ -24,8 +24,9 @@ router.get("/verify", MidGuard, (req, res) => {
     })
   });
 
-  router.post("/ChildLogin", (req, res, next) => {
+  router.post("/childLogin", (req, res, next) => {
     if (!req.body.childName ) {
+        return res.status(401).json({ message: "Have your parents signup!" });
      
     }
   
@@ -35,10 +36,10 @@ router.get("/verify", MidGuard, (req, res) => {
           return res.status(401).json({ message: "Have your parents signup!" });
         }
   
-        const doesMatch = bcrypt.compareSync(
-          req.body.password,
-          foundParent.password
-        );
+        // const doesMatch = bcrypt.compareSync(
+        //   req.body.password,
+        //   foundParent.password
+        // );
   
         if (doesMatch) {
           const payload = { _id: foundParent._id, email: foundParent.email, name: foundParent.name, city: foundParent.city, childName: foundParent.childName, childAge: foundParent.childAge, relation: foundParent.relation };

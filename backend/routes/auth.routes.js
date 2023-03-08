@@ -40,9 +40,12 @@ router.post("/signup", async (req, res, next) => {
             });
             res.json({ token: token, createdParent: createdParent, message: `Welcome ${createdParent.name}`  });
           })
-          .catch((err) => {
-            res.status(400).json(err.message);
-          });
+          const Child = 
+            await new Child({ childName, childAge, parent: parent._id });
+            res.status(201).json({ message: "Parent and child accounts created" });
+        } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server error" });
       });
 
 

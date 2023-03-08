@@ -5,6 +5,7 @@ const childSchema = new Schema(
     name: String,
     age: Number,
     gamesPlayed: {type: Schema.Types.ObjectId, ref: "Update"},
+    parent: { type: Schema.Types.ObjectId, ref: 'Parent' },
   },
   {
     timeseries: true,

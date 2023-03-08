@@ -10,7 +10,7 @@ import CreatedGames from "./CreatedGames";
 function Keyboard({ onLetterClick }) {
   const rows = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
-    ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+    ["A", "S", "D", "F", "G", "H", "J", "K", "L","\u2190"],
     ["Z", "X", "C", "V", "B", "N", "M"],
   ];
 
@@ -39,17 +39,14 @@ function Keyboard({ onLetterClick }) {
 const ChildLogin = () => {
   const [text, setText] = useState("");
   
-  function handleLetterClick(letter, e) {
-    console.log(e)
-    if (e.key === "Backspace") {
-      setText(text - letter);
-       }
-       setText(text + letter);
-  }
-  console.log(text)
-  // const { user } = AuthContext();
+  function handleLetterClick(letter) {
+    if (letter === "\u2190") {
+      setText(text.slice(0, -1)); // remove last character from text
+    } else {
+      setText(text + letter);
+    }  // const { user } = AuthContext();
   // const { childId } = useParams();
-
+  }
 
   return (
     <>
@@ -60,12 +57,8 @@ const ChildLogin = () => {
       <div className="welcomeMsg">
         <p> `Hi ${ChildLogin}! Let's play a game!`</p>
         <Link to="/PreLoaded-games" path={<PreLoadedGames />} />
-        <Link to="./created-games" path={<CreatedGames />} />
+        <Link to="/created-games" path={<CreatedGames />} />
       </div>
-    {/* <div> */}
-      {/* <h1>Child Dashboard</h1>
-      <button onClick={sendUpdate}>Do Something</button>
-    </div> */}
     </>
   );
 }
