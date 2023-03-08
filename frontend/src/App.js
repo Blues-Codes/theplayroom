@@ -46,6 +46,7 @@ const App = () => {
           <Route path='/about'element={<About/>} />
           <Route path='/signup'element={<ParentSignUp />} />
           <Route path='/login'element={<ParentLogin />} />
+          <Route path='/childlogin' element={<ChildLogin />}/>
 
           <Route element={<LoggedIn />}>
 
