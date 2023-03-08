@@ -11,7 +11,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const saltRounds = 10;
 
-const MidGuard = require('../middleware/MidGuard')
+const MidGuard = require('../middleware/midGuard')
 
 
 router.post("/signup", async (req, res, next) => {
