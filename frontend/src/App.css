@@ -88,3 +88,7 @@ iframe {
   pointer-events: none;
 
 }
+
+.clickable {
+  background-image: url("./images/playroomlinked.png");
+}
