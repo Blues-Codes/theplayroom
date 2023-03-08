@@ -1,4 +1,4 @@
-import { useEffect, createContext, useContext } from "react";
+import { useEffect, createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { get } from "../services/authService";
 import { LoadingContext } from "./loading.context";
@@ -7,7 +7,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const { setIsLoading, setParent, setMessage } = useContext(LoadingContext);
-
+  const [ child, setChild] = useState(null)
   const navigate = useNavigate();
 
   const authenticateParent = () => {
@@ -20,6 +20,11 @@ const AuthProvider = ({ children }) => {
       setIsLoading(false);
       setParent(null);
     } else {
+      get('/child/verify')
+      .then((results) =>{
+        console.log('Child verify', results.data);
+        setChild(results.data)
+      })
     get("/auth/verify")
       .then((results) => {
         console.log("Are we logged in?", results.data);

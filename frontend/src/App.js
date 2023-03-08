@@ -14,11 +14,11 @@ import PreLoadedGames from './pages/PreLoadedGames';
 import Resources from './pages/Resources';
 import EditProfile from './pages/EditProfile';
 import CreatedGames from './pages/CreatedGames';
-// import Storytime from './pages/Storytime';
-// import PaintingGame from './Games/Painting';
-// import Shapes from './Games/Shapes';
-// import TraceGame from './Games/Tracing';
-// import Weather from './Games/Weather';
+import Storytime from './pages/Storytime';
+import PaintingGame from './Games/Painting';
+import Shapes from './Games/Shapes';
+import TraceGame from './Games/Tracing';
+import Weather from './Games/Weather';
 
 
 const App = () => {
@@ -57,13 +57,12 @@ const App = () => {
             <Route path='/Comingsoon' element={<ComingSoon />} />
             <Route path='/preloaded-games' element={<PreLoadedGames />} />
             <Route path='/created-games' element={<CreatedGames />} />
-
             <Route path='/Resources' element={<Resources />} />
-            {/* <Route path='/StoryTime' element={<Storytime />}/>
+            <Route path='/StoryTime' element={<Storytime />}/>
             <Route path='/tracing' element={<TraceGame />} />
             <Route path='/shapes' element={<Shapes />} />
             <Route path='/painting' element={<PaintingGame />} />
-            <Route path='/weather' element={<Weather />} /> */}
+            <Route path='/weather' element={<Weather />} />
 
 
           </Route>

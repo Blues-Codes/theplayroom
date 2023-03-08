@@ -1,11 +1,9 @@
 import {  useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { LoadingContext } from "../context/loading.context";
 import { Link } from "react-router-dom";
 import PreLoadedGames from "./PreLoadedGames";
 import CreatedGames from "./CreatedGames";
-// import { AuthContext } from "../context/auth.context";
-// import { useParams } from "react-router-dom";
+import { post } from "../services/authService"
+
 
 function Keyboard({ onLetterClick }) {
   const rows = [
@@ -38,7 +36,7 @@ function Keyboard({ onLetterClick }) {
 
 const ChildLogin = () => {
   const [text, setText] = useState("");
-  
+  console.log(text)
   function handleLetterClick(letter) {
     if (letter === "\u2190") {
       setText(text.slice(0, -1)); // remove last character from text
@@ -48,10 +46,26 @@ const ChildLogin = () => {
   // const { childId } = useParams();
   }
 
+  const handleChildLogin =(e) => {
+    e.preventDefault()
+    post('/child/childlogin', {text})
+    .then((results) => {
+      console.log(results.data)
+    }) 
+    .catch((err) =>{
+      console.log(err)
+    })
+  }
+
+
   return (
     <>
       <div className="childLogin">
+        <form onSubmit={handleChildLogin}>
         <input type="text" name="text"value={text} />
+        <button>GO</button>
+
+        </form>
         <Keyboard onLetterClick={handleLetterClick} />
       </div>
       <div className="welcomeMsg">

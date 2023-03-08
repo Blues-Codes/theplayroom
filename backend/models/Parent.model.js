@@ -13,7 +13,7 @@ const parentSchema = new Schema(
     },
     name: String,
     city: String,
-    childName: String,
+    childName: { type: String, lowercase: true},
     childAge: Number,
     Relation: String,
     // posts: [{type: Schema.Types.ObjectId, ref: "Post"}]

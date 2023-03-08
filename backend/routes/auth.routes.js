@@ -4,6 +4,7 @@ var express = require("express");
 var router = express.Router();
 
 const Parent = require("../models/Parent.model");
+const Child = require('../models/Child.model')
 
 
 const bcrypt = require("bcryptjs");
@@ -32,21 +33,28 @@ router.post("/signup", async (req, res, next) => {
 
         })
           .then((createdParent) => {
-            const payload = { ...createdParent };
-
-            const token = jwt.sign(payload, process.env.SECRET, {
-              algorithm: "HS256",
-              expiresIn: "24hr",
-            });
-            res.json({ token: token, createdParent: createdParent, message: `Welcome ${createdParent.name}`  });
+             Child.create({ name:createdParent.childName, age: createdParent.childAge, parent: createdParent._id })
+             .then((createdChild) => {
+              const payload = { _id: createdParent._id, email: createdParent.email, name: createdParent.name };              console.log(payload)
+             const token = jwt.sign(payload, process.env.SECRET, {
+               algorithm: "HS256",
+               expiresIn: "24hr",
+             });
+             res.json({ token: token, createdParent: createdParent, message: `Welcome ${createdParent.name}`  });
+ 
+             }) 
+             .catch((err) => {
+              res.status(201).json({ message: "Parent and child accounts created" });
+              console.log(err)
+             })
+          
+ 
           })
-          const Child = 
-            await new Child({ childName, childAge, parent: parent._id });
-            res.status(201).json({ message: "Parent and child accounts created" });
-        } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: "Server error" });
-      });
+            // res.status(201).json({ message: "Parent and child accounts created" });
+        // }) 
+        //     .catch ((err) => {
+        //       res.json(err.message);
+            });
 
 
 router.post("/login", (req, res, next) => {
@@ -86,12 +94,12 @@ router.post("/login", (req, res, next) => {
 //VERIFY ALREADY CREATED USER
 
 router.get("/verify", MidGuard, (req, res) => {
-  Parent.findOne({_id: req.user._id})
   // .populate('childName')
   // .populate('gamesPlayed')
-
+  
+  Parent.findOne({_id: req.user._id})
   .then((foundParent) => {
-
+console.log(foundParent)
     const payload = { ...foundParent };
     console.log("this is the payload", payload, foundParent)
     delete payload._doc.password;
