@@ -18,15 +18,12 @@ router.get('/profile', MidGuard, (req, res, next) => {
 
 });
 
-//EDITING PROFILE ADDING CHILD
-router.post('/profile-edit', MidGuard, (req, res, next) => {
+//EDITING PARENT PROFILE
+router.post('/parent/:parentId/profile', MidGuard, (req, res, next) => {
   console.log(req.parent)
   Parent.findByIdAndUpdate(req.params.parentId, {
     name:req.body.name,
     city: req.body.city,
-    childName: req.body.childName,
-    childAge: req.body.childAge, 
-    relation: req.body.relation
   },{new:true})
     .then((updatedParent) =>{
       res.json(updatedParent)
@@ -34,30 +31,36 @@ router.post('/profile-edit', MidGuard, (req, res, next) => {
     .catch((err) =>{
       console.log(err)
     })
-        let newChild = {
-        childName: req.body.childName,
-        childAge: req.body.childAge,
-        relation: req.body.relation
-    }
-      Child.create(newChild)
-        .then((createdChild) => {
-            return Parent.findByIdAndUpdate(
-                {
-                    _id: req.params.parentId
-                }, 
-                {
-                $push: {child: createdChild._id}
-                },
-                {new: true})
-        })
-        .then((updatedParent) => {
-             return updatedParent.populate('child')
-            })
-              .catch((err) => {
-            console.log(err)
-        })
 });
 
+//ADDING CHILD TO PARENT PROFILE
+router.post('/parent/:parentId/child', MidGuard, (req, res, next) => {
+  let newChild = {
+    childName: req.body.childName,
+    childAge: req.body.childAge,
+    relation: req.body.relation
+  }
+  Child.create(newChild)
+    .then((createdChild) => {
+      return Parent.findByIdAndUpdate(
+        {
+          _id: req.params.parentId
+        }, 
+        {
+          $push: {child: createdChild._id}
+        },
+        {new: true})
+    })
+    .then((updatedParent) => {
+      return updatedParent.populate('child')
+    })
+    .then((updatedParentWithChild) => {
+      return res.json(updatedParentWithChild)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+});
 
 // });
 

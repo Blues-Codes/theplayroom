@@ -15,7 +15,8 @@ const Navbar = () =>{
 
             <nav className="navigation">
             <Link to={'/about'}>About</Link>
-            <Link to={'/games'}>All Games</Link>
+            <Link to={'/PreLoaded-games'}>PreLoaded Games</Link>
+            <Link to={'/created-games'}>Created Games</Link>
             <Link to={'/profile'}>Profile</Link>
             <Link to={'/updates'}>Updates</Link>
         </nav>
@@ -26,7 +27,6 @@ const Navbar = () =>{
         <nav className="navigation">
             <Link to={'/'}>Home</Link>
             <Link to={'/about'}>About</Link>
-            <Link to={'/games'}>All Games</Link>
             <Link to={'/signup'}>Sign Up</Link>
             <Link to={"/login"}>Login </Link>
 

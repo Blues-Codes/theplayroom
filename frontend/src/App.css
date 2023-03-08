@@ -76,18 +76,17 @@ margin: 5px;
   background-color: #eee;
 }
 
-/* WEATHER GAME */
-iframe {
+/* PreLoaded Games */
+.preloaded iframe {
   width: 100%;
-  height: 50vh;
-  padding-bottom: 56.25%;
+  height: 80vh;
 }
 
-.frame iframe{
+/* .frame iframe{
 
   pointer-events: none;
 
-}
+} */
 
 .clickable {
   background-image: url("./images/playroomlinked.png");

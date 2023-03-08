@@ -2,9 +2,10 @@ import { useContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { LoadingContext } from "../context/loading.context";
 import { Link } from "react-router-dom";
-import Games from "./Games";
-import { AuthContext } from "../context/auth.context";
-import { useParams } from "react-router-dom";
+import PreLoadedGames from "./PreLoadedGames";
+import CreatedGames from "./CreatedGames";
+// import { AuthContext } from "../context/auth.context";
+// import { useParams } from "react-router-dom";
 // import io from "socket.io-client";
 
 function Keyboard({ onLetterClick }) {
@@ -59,7 +60,8 @@ const ChildLogin = () => {
       </div>
       <div className="welcomeMsg">
         <p> `Hi ${ChildLogin}! Let's play a game!`</p>
-        <Link to="/games" path={<Games />} />
+        <Link to="/PreLoaded-games" path={<PreLoadedGames />} />
+        <Link to="./created-games" path={<CreatedGames />} />
       </div>
     {/* <div> */}
       {/* <h1>Child Dashboard</h1>

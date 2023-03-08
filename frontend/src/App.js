@@ -10,9 +10,10 @@ import ParentLogin from './pages/ParentLogin'
 import Profile from './pages/Profile';
 import ParentSignUp from './pages/ParentSignup';
 import Updates from './pages/Updates';
-import Games from './pages/Games';
+import PreLoadedGames from './pages/PreLoadedGames';
 import Resources from './pages/Resources';
 import EditProfile from './pages/EditProfile';
+import CreatedGames from './pages/CreatedGames';
 // import Storytime from './pages/Storytime';
 // import PaintingGame from './Games/Painting';
 // import Shapes from './Games/Shapes';
@@ -53,7 +54,9 @@ const App = () => {
             <Route path='/profile'element={<Profile />} /> 
             <Route path='/Childlogin'element={<ChildLogin />} />
             <Route path='/Comingsoon' element={<ComingSoon />} />
-            <Route path='/games' element={<Games />} />
+            <Route path='/preloaded-games' element={<PreLoadedGames />} />
+            <Route path='/created-games' element={<CreatedGames />} />
+
             <Route path='/Resources' element={<Resources />} />
             {/* <Route path='/StoryTime' element={<Storytime />}/>
             <Route path='/tracing' element={<TraceGame />} />

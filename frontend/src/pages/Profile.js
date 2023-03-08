@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { LoadingContext } from "../context/loading.context";
 import { Link } from "react-router-dom";
 // import UpdateList from "./Updates";
-import { Route } from 'react-router-dom';
-import Updates from './Updates';
+// import { Route } from 'react-router-dom';
+// import Updates from './Updates';
 
 
 const Profile = () => {
@@ -22,11 +22,11 @@ const navigate = useNavigate()
 
   return (
     <div>
-       <Link to={"/profile-edit"}>
+       <Link to={"/edit-profile"}>
         <button>Edit Profile</button>
        </Link>
-      <Link to={"/EducationResources"}>
-        <button>Resources</button>
+      <Link to={"/Resources"}>
+        <button>Additional Resources</button>
       </Link>
       <button onClick={(() => {localStorage.removeItem("authToken"); navigate("/login")})}> Log Out</button>
 

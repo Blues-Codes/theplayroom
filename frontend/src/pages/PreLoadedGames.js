@@ -45,15 +45,39 @@ const gameList = [
 ]
 
 
-const Games = () => {
+const PreLoadedGames = () => {
     const [gamesList, setGameList] = useState(gameList)
     console.log(gamesList)
   return (
-    <div>
-        <h1>Games</h1>
+    <div className="preloaded">
+        <h1>Tracing The Alphabet</h1>
         <div className="frame" onClick={()=> console.log("clicking")}>
         <iframe 
         src="https://www.thelearningapps.com/alphabet-tracing-game-for-kids/"
+        // title="title"
+      ></iframe></div>
+      <h1>Painting</h1>
+        <div className="frame" onClick={()=> console.log("clicking")}>
+        <iframe 
+        src="https://www.abcya.com/games/abcya_paint"
+        // title="title"
+      ></iframe></div>
+      <h1>Memory</h1>
+        <div className="frame" onClick={()=> console.log("clicking")}>
+        <iframe 
+        src="https://www.memozor.com/memory-games/for-toddlers-babies/easy-learn-the-alphabet"
+        // title="title"
+      ></iframe></div>
+      <h1>Dress for the Weather</h1>
+        <div className="frame" onClick={()=> console.log("clicking")}>
+        <iframe 
+        src="https://www.abcya.com/games/dress_for_the_weather"
+        // title="title"
+      ></iframe></div>
+      <h1>Same and Different</h1>
+        <div className="frame" onClick={()=> console.log("clicking")}>
+        <iframe 
+        src="https://www.abcya.com/games/same-different"
         // title="title"
       ></iframe>
       </div>
@@ -73,4 +97,4 @@ const Games = () => {
   )
 }
 
-export default Games
+export default PreLoadedGames
