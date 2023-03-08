@@ -1,3 +1,5 @@
+const { Schema, model } = require("mongoose");
+
 const updateSchema = new Schema(
   {
     child: {type: Schema.Types.ObjectId, ref: "Child"},
@@ -20,7 +22,6 @@ const Update = model("Update", updateSchema);
 module.exports = Update;
 
 
-// const { Schema, model } = require("mongoose");
 
 // // parent getting updates
 
